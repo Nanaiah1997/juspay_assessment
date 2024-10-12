@@ -220,9 +220,6 @@ const dashboardSlice = createSlice({
     setShowNotificationBar: (state, { payload }) => {
       state.showNotificationBar = !state.showNotificationBar;
     },
-    setActiveStep: (state, { payload }) => {
-      state.activeStep = payload;
-    },
   },
 });
 
