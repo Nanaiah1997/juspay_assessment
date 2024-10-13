@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useNavigate, useParams } from "react-router-dom";
 import { theme } from "../../themes/theme";
+import cx from "clsx";
+import useStyles from "./SideBar.styles";
 
 const profile = {
   name: "John Doe",
@@ -18,20 +20,12 @@ const profile = {
 };
 
 const SideBar = () => {
+  const classes = useStyles();
   const { sidebar } = useSelector((s) => s.dashboardSlice);
   const { view } = useParams();
   return (
-    <Box sx={{ padding: ".5rem" }}>
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "start",
-          gap: "1rem",
-
-          margin: "2rem 0rem 2rem 1rem ",
-        }}
-      >
+    <Box className={classes.sidebarContainer}>
+      <Box className={classes.profileBox}>
         <Avatar
           alt={profile?.name}
           src={profile?.imageUrl}
@@ -41,18 +35,7 @@ const SideBar = () => {
       </Box>
       {Object.entries(sidebar).map(([section, items], index) => (
         <Box key={section} sx={{ marginBottom: "4rem" }}>
-          <Typography
-            variant="body2"
-            sx={{
-              padding: ".2rem 1rem",
-              backgroundColor: theme.palette.background.main,
-              borderRadius: ".5rem",
-              opacity: 0.5,
-              "&:hover": {
-                background: theme.palette.secondary.main,
-              },
-            }}
-          >
+          <Typography variant="body2" className={classes.sectionHeader}>
             {section}
           </Typography>
           {items.map((item, i) => (
@@ -68,7 +51,7 @@ export default SideBar;
 
 const SidebarItem = ({ item, view, index }) => {
   const [showSubmenu, setShowSubmenu] = useState(false);
-
+  const classes = useStyles();
   const navigate = useNavigate();
 
   const handleToggleSubmenu = (item) => {
@@ -82,77 +65,30 @@ const SidebarItem = ({ item, view, index }) => {
   return (
     <Box>
       <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          padding: ".2rem 1rem",
-          cursor: "pointer",
-          marginBottom: ".2rem",
-          backgroundColor:
-            view === item.key
-              ? `${theme.palette.secondary.main}40`
-              : "transparent",
-          borderLeft:
-            view === item.key
-              ? `4px solid ${theme.palette.text.primary}`
-              : "none",
-
-          borderRadius: ".4rem",
-          "&:hover": {
-            backgroundColor: `${theme.palette.secondary.main}40`,
-          },
-        }}
+        className={cx(classes.itemBox, {
+          [classes.activeItem]: view === item.key,
+        })}
         onClick={() => handleToggleSubmenu(item)}
       >
         <IconButton size="small">
           <IconButton size="small">
             {index === 0 ? (
-              <Box
-                sx={{
-                  width: "0.5rem",
-                  height: "0.5rem",
-                  borderRadius: "50%",
-                  backgroundColor: theme.palette.text.primary,
-                  opacity: 0.5,
-                }}
-              />
+              <Box className={classes.dot} />
             ) : (
               <ExpandMoreIcon
                 sx={{
                   transform: showSubmenu ? "rotate(0deg)" : "rotate(270deg)",
                   transition: "transform 0.2s",
                   visibility: view !== item.key ? "visible" : "hidden",
-                  fill: theme.palette.text.primary, // Set your desired color here
+                  fill: theme.palette.text.primary,
                   color: "inherit",
                 }}
               />
             )}
           </IconButton>
         </IconButton>
-        <Box
-          sx={{
-            marginRight: ".5rem",
-            "& svg": {
-              width: "2rem",
-              height: "2rem",
-              "& path": {
-                fill: theme.palette.text.primary,
-              },
-            },
-          }}
-        >
-          {item?.icon}
-        </Box>
-        <Typography
-          sx={{
-            color:
-              view === item.key
-                ? theme.palette.text.secondary
-                : theme.palette.text.primary,
-          }}
-        >
-          {item.title}
-        </Typography>
+        <Box className={classes.icon}>{item?.icon}</Box>
+        <Typography variant="body1">{item.title}</Typography>
       </Box>
       <Collapse in={showSubmenu}>
         <Box component="div" sx={{ pl: 8 }}>

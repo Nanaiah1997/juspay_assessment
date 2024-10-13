@@ -11,8 +11,11 @@ import {
   Avatar,
   Box,
 } from "@mui/material";
-import Pagination from "@mui/material/Pagination"; // Make sure this import is correct based on your setup
+import Pagination from "@mui/material/Pagination";
 import { theme } from "../../themes/theme";
+import useStyles from "./OrderListTable.styles";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import EventNoteOutlinedIcon from "@mui/icons-material/EventNoteOutlined";
 
 const columns = [
   { field: "orderId", headerName: "Order ID", width: "15%", minWidth: 100 },
@@ -23,108 +26,9 @@ const columns = [
   { field: "status", headerName: "Status", width: "10%", minWidth: 80 },
 ];
 
-// const data = [
-//   {
-//     orderId: 1,
-//     user: "User A",
-//     project: "Project Alpha",
-//     address: "123 Main St",
-//     date: "2024-01-01",
-//     status: "Pending",
-//   },
-//   {
-//     orderId: 2,
-//     user: "User B",
-//     project: "Project Beta",
-//     address: "456 Oak Ave",
-//     date: "2024-01-02",
-//     status: "Completed",
-//   },
-//   {
-//     orderId: 3,
-//     user: "User C",
-//     project: "Project Gamma",
-//     address: "789 Pine Rd",
-//     date: "2024-01-03",
-//     status: "In Progress",
-//   },
-//   {
-//     orderId: 4,
-//     user: "User D",
-//     project: "Project Delta",
-//     address: "321 Elm St",
-//     date: "2024-01-04",
-//     status: "Pending",
-//   },
-//   {
-//     orderId: 5,
-//     user: "User E",
-//     project: "Project Epsilon",
-//     address: "654 Maple Ave",
-//     date: "2024-01-05",
-//     status: "Completed",
-//   },
-//   {
-//     orderId: 6,
-//     user: "User F",
-//     project: "Project Zeta",
-//     address: "987 Birch Blvd",
-//     date: "2024-01-06",
-//     status: "In Progress",
-//   },
-//   {
-//     orderId: 7,
-//     user: "User G",
-//     project: "Project Eta",
-//     address: "135 Oak Ct",
-//     date: "2024-01-07",
-//     status: "Pending",
-//   },
-//   {
-//     orderId: 8,
-//     user: "User H",
-//     project: "Project Theta",
-//     address: "246 Cedar Dr",
-//     date: "2024-01-08",
-//     status: "Completed",
-//   },
-//   {
-//     orderId: 9,
-//     user: "User I",
-//     project: "Project Iota",
-//     address: "357 Spruce St",
-//     date: "2024-01-09",
-//     status: "In Progress",
-//   },
-//   {
-//     orderId: 10,
-//     user: "User J",
-//     project: "Project Kappa",
-//     address: "468 Willow Way",
-//     date: "2024-01-10",
-//     status: "Pending",
-//   },
-//   {
-//     orderId: 11,
-//     user: "User K",
-//     project: "Project Lambda",
-//     address: "579 Fir Ct",
-//     date: "2024-01-11",
-//     status: "Completed",
-//   },
-//   {
-//     orderId: 12,
-//     user: "User L",
-//     project: "Project Mu",
-//     address: "680 Cypress Dr",
-//     date: "2024-01-12",
-//     status: "In Progress",
-//   },
-//   // Add more rows as needed
-// ];
 const data = [
   {
-    orderId: 1,
+    orderId: "#CM0001",
     user: {
       name: "User A",
       profile_url: "https://example.com/profiles/user-a",
@@ -135,7 +39,7 @@ const data = [
     status: "Pending",
   },
   {
-    orderId: 2,
+    orderId: "#CM0002",
     user: {
       name: "User B",
       profile_url: "https://example.com/profiles/user-b",
@@ -146,7 +50,7 @@ const data = [
     status: "Completed",
   },
   {
-    orderId: 3,
+    orderId: "#CM0003",
     user: {
       name: "User C",
       profile_url: "https://example.com/profiles/user-c",
@@ -157,7 +61,7 @@ const data = [
     status: "In Progress",
   },
   {
-    orderId: 4,
+    orderId: "#CM0004",
     user: {
       name: "User D",
       profile_url: "https://example.com/profiles/user-d",
@@ -165,10 +69,10 @@ const data = [
     project: "Project Delta",
     address: "321 Elm St",
     date: "2024-01-04",
-    status: "Pending",
+    status: "Approved",
   },
   {
-    orderId: 5,
+    orderId: "#CM0005",
     user: {
       name: "User E",
       profile_url: "https://example.com/profiles/user-e",
@@ -176,10 +80,10 @@ const data = [
     project: "Project Epsilon",
     address: "654 Maple Ave",
     date: "2024-01-05",
-    status: "Completed",
+    status: "Rejected",
   },
   {
-    orderId: 6,
+    orderId: "#CM0006",
     user: {
       name: "User F",
       profile_url: "https://example.com/profiles/user-f",
@@ -190,7 +94,7 @@ const data = [
     status: "In Progress",
   },
   {
-    orderId: 7,
+    orderId: "#CM0007",
     user: {
       name: "User G",
       profile_url: "https://example.com/profiles/user-g",
@@ -201,7 +105,7 @@ const data = [
     status: "Pending",
   },
   {
-    orderId: 8,
+    orderId: "#CM0008",
     user: {
       name: "User H",
       profile_url: "https://example.com/profiles/user-h",
@@ -212,7 +116,7 @@ const data = [
     status: "Completed",
   },
   {
-    orderId: 9,
+    orderId: "#CM0009",
     user: {
       name: "User I",
       profile_url: "https://example.com/profiles/user-i",
@@ -223,7 +127,7 @@ const data = [
     status: "In Progress",
   },
   {
-    orderId: 10,
+    orderId: "#CM0010",
     user: {
       name: "User J",
       profile_url: "https://example.com/profiles/user-j",
@@ -234,7 +138,7 @@ const data = [
     status: "Pending",
   },
   {
-    orderId: 11,
+    orderId: "#CM0011",
     user: {
       name: "User K",
       profile_url: "https://example.com/profiles/user-k",
@@ -245,7 +149,7 @@ const data = [
     status: "Completed",
   },
   {
-    orderId: 12,
+    orderId: "#CM0012",
     user: {
       name: "User L",
       profile_url: "https://example.com/profiles/user-l",
@@ -255,15 +159,61 @@ const data = [
     date: "2024-01-12",
     status: "In Progress",
   },
-  // Add more rows as needed
+  {
+    orderId: "#CM0013",
+    user: {
+      name: "User M",
+      profile_url: "https://example.com/profiles/user-m",
+    },
+    project: "Project Nu",
+    address: "791 Willow St",
+    date: "2024-01-13",
+    status: "Approved",
+  },
+  {
+    orderId: "#CM0014",
+    user: {
+      name: "User N",
+      profile_url: "https://example.com/profiles/user-n",
+    },
+    project: "Project Xi",
+    address: "802 Oak Blvd",
+    date: "2024-01-14",
+    status: "Rejected",
+  },
 ];
 
-const OrderListTable = ({ alwaysOnEditMode, keyword }) => {
+function getColor(status) {
+  let color;
+
+  switch (status) {
+    case "In Progress":
+      color = "blue";
+      break;
+    case "Pending":
+      color = "lightblue";
+      break;
+    case "Completed":
+      color = "green";
+      break;
+    case "Approved":
+      color = "yellow";
+      break;
+    case "Rejected":
+      color = "gray";
+      break;
+    default:
+      color = theme.palette.text.primary;
+  }
+
+  return color;
+}
+const OrderListTable = ({ keyword }) => {
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
   const [hoveredRow, setHoveredRow] = useState(null);
   const rowsPerPage = 10;
-
+  const classes = useStyles();
   const handleSelect = (orderId) => {
     setSelected((prev) => {
       if (prev.includes(orderId)) {
@@ -287,19 +237,54 @@ const OrderListTable = ({ alwaysOnEditMode, keyword }) => {
     startIndex,
     startIndex + rowsPerPage
   );
+  const renderCellContent = (column, value, row) => {
+    switch (column.field) {
+      case "user":
+        return (
+          <Box className={classes.userCell}>
+            <Avatar
+              alt={value?.name}
+              src={value?.profile_url}
+              sx={{ width: 20, height: 20 }}
+            />
+            {value.name}
+          </Box>
+        );
+      case "date":
+        return (
+          <Box className={classes.userCell}>
+            <CalendarTodayOutlinedIcon />
+            {value}
+          </Box>
+        );
+      case "status":
+        return (
+          <Box className={classes.userCell} sx={{ color: getColor(value) }}>
+            <Box className={classes.dot} sx={{ background: getColor(value) }} />
+            {value}
+          </Box>
+        );
+      case "address":
+        return (
+          <Box className={classes.userCell}>
+            {value}
+            {(hoveredRow === row.orderId || selected.includes(row.orderId)) && (
+              <EventNoteOutlinedIcon />
+            )}
+          </Box>
+        );
+      default:
+        return value;
+    }
+  };
 
   return (
-    <Paper sx={{ background: theme.palette.background.main }}>
-      <TableContainer sx={{ background: theme.palette.background.main }}>
+    <Paper className={classes.paper}>
+      <TableContainer className={classes.tableContainer}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>
-              <TableCell
-                padding="checkbox"
-                sx={{
-                  background: theme.palette.background.main,
-                }}
-              >
+              <TableCell padding="checkbox" className={classes.headerCell}>
                 <Checkbox
                   indeterminate={
                     selected.length > 0 && selected.length < filteredRows.length
@@ -312,21 +297,14 @@ const OrderListTable = ({ alwaysOnEditMode, keyword }) => {
                       setSelected(filteredRows.map((row) => row.orderId));
                     }
                   }}
-                  sx={{
-                    "&.Mui-checked, &.MuiCheckbox-indeterminate": {
-                      color: theme.palette.text.primary,
-                    },
-                  }}
+                  className={classes.checkboxChecked}
                 />
               </TableCell>
               {columns.map((column, i) => (
                 <TableCell
                   key={i}
-                  sx={{
-                    width: column.width,
-                    minWidth: column.minWidth,
-                    background: theme.palette.background.main,
-                  }}
+                  style={{ width: column.width, minWidth: column.minWidth }}
+                  className={classes.headerCell}
                   title={column.headerName}
                 >
                   {column.headerName}
@@ -347,11 +325,7 @@ const OrderListTable = ({ alwaysOnEditMode, keyword }) => {
                     <Checkbox
                       checked={selected.includes(row.orderId)}
                       onChange={() => handleSelect(row.orderId)}
-                      sx={{
-                        "&.Mui-checked": {
-                          color: theme.palette.text.primary,
-                        },
-                      }}
+                      className={classes.checkboxChecked}
                     />
                   )}
                 </TableCell>
@@ -361,7 +335,7 @@ const OrderListTable = ({ alwaysOnEditMode, keyword }) => {
                   return (
                     <TableCell
                       key={columnIndex}
-                      sx={{
+                      style={{
                         width: column.width,
                         minWidth: column.minWidth,
                         fontSize: "1.2rem",
@@ -369,24 +343,7 @@ const OrderListTable = ({ alwaysOnEditMode, keyword }) => {
                         lineHeight: 1.2,
                       }}
                     >
-                      {column.field === "user" ? (
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: ".5rem",
-                          }}
-                        >
-                          <Avatar
-                            alt={value?.name}
-                            src={value?.profile_url}
-                            sx={{ width: 20, height: 20 }}
-                          />
-                          {value.name}
-                        </Box>
-                      ) : (
-                        value
-                      )}
+                      {renderCellContent(column, row[column.field], row)}
                     </TableCell>
                   );
                 })}
@@ -399,13 +356,7 @@ const OrderListTable = ({ alwaysOnEditMode, keyword }) => {
         count={count}
         onChange={handleChangePage}
         page={page + 1}
-        sx={{
-          float: "right",
-          marginTop: "1rem",
-          "& .Mui-selected": {
-            borderRadius: "1rem",
-          },
-        }}
+        className={classes.pagination}
       />
     </Paper>
   );

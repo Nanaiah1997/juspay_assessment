@@ -24,15 +24,15 @@ const GLOBALSTYLES = {
   },
 };
 const FONT_FAMILY = {
-  MAIN: "Poppins",
+  MAIN: "sans-serif",
 };
 const theme = createTheme({
   palette: {
     primary: {
-      main: COLORS.PRIMARY_MAIN, // Customize your primary color
+      main: COLORS.PRIMARY_MAIN,
     },
     secondary: {
-      main: COLORS.SECONDARY_MAIN, // Customize your secondary color
+      main: COLORS.SECONDARY_MAIN,
     },
     background: {
       main: COLORS.BACKGROUND_MAIN,
@@ -42,10 +42,7 @@ const theme = createTheme({
       secondary: COLORS.TEXT_SECONDARY,
       dark: COLORS.TEXT_050,
       disabled: "",
-
-      // activeLink: ''
     },
-    // You can define more colors or modify existing ones
   },
   typography: {
     fontFamily: FONT_FAMILY.MAIN,
@@ -88,8 +85,6 @@ const theme = createTheme({
     },
   },
   globalStyles: GLOBALSTYLES,
-
-  // You can customize other MUI components or settings here
 });
 Typography.defaultProps = {
   component: "div",

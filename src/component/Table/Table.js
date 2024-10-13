@@ -8,8 +8,24 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles"; // Import makeStyles
 import cx from "classnames"; // Ensure you have this library for classnames handling
 import { theme } from "../../themes/theme";
+
+const useStyles = makeStyles(() => ({
+  tableContainer: {
+    background: `${theme.palette.secondary.main}40`,
+  },
+  headerCell: {
+    padding: ".8rem",
+    fontSize: "1.1rem",
+    fontWeight: 600,
+    background: `${theme.palette.secondary.main}40`,
+  },
+  bodyCell: {
+    borderBottom: "none",
+  },
+}));
 
 const columns = [
   { field: "name", headerName: "Name", width: "25%", minWidth: 100 },
@@ -25,25 +41,17 @@ const data = [
 ];
 
 const DashboardTable = () => {
+  const classes = useStyles(); // Use styles
+
   return (
-    <TableContainer component={Paper}>
-      <Table
-        stickyHeader
-        sx={{ background: `${theme.palette.secondary.main}40` }}
-      >
+    <TableContainer component={Paper} className={classes.tableContainer}>
+      <Table stickyHeader>
         <TableHead>
           <TableRow>
             {columns.map((column, i) => (
               <TableCell
                 key={i}
-                sx={{
-                  width: column.width,
-                  minWidth: column.minWidth,
-                  padding: ".8rem",
-                  fontSize: "1.1rem",
-                  fontWeight: 600,
-                  background: `${theme.palette.secondary.main}40`,
-                }}
+                className={classes.headerCell}
                 title={column.headerName}
               >
                 {column.headerName}
@@ -57,14 +65,7 @@ const DashboardTable = () => {
               {columns.map((column, columnIndex) => {
                 const value = row[column.field];
                 return (
-                  <TableCell
-                    key={columnIndex}
-                    sx={{
-                      width: column.width,
-                      minWidth: column.minWidth,
-                      borderBottom: "none",
-                    }}
-                  >
+                  <TableCell key={columnIndex} className={classes.bodyCell}>
                     {column.field === "amount" || column.field === "price"
                       ? `$${value.toFixed(2)}`
                       : value}

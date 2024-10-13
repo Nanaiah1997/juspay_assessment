@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import KeyboardCommandKeyRoundedIcon from "@mui/icons-material/KeyboardCommandKeyRounded";
 import { Box, InputBase, Typography } from "@mui/material";
 import useStyles from "./SearchBox.styles";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@mui/styles";
 
 export function SearchBox({
   className = "",
@@ -19,8 +19,8 @@ export function SearchBox({
   disabled = false,
   showEndAdornment = true,
 }) {
-  const classes = useStyles({});
   const theme = useTheme();
+  const classes = useStyles();
   console.log(theme, "useTheme");
   return (
     <InputBase
