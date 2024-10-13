@@ -5,7 +5,7 @@ import { setShowNotificationBar } from "../../redux/slices/slice";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useThemeContext } from "../../themes/ThemeProviderWrapper";
-import { theme } from "../../themes/theme";
+
 import NotificationsNoneTwoToneIcon from "@mui/icons-material/NotificationsNoneTwoTone";
 import StarTwoToneIcon from "@mui/icons-material/StarTwoTone";
 import LightModeTwoToneIcon from "@mui/icons-material/LightModeTwoTone";
@@ -16,7 +16,7 @@ const DashboardHeader = () => {
   const dispatch = useDispatch();
   const { view } = useParams();
   const classes = useStyles();
-  const { toggleTheme, isLight } = useThemeContext();
+  const { toggleTheme } = useThemeContext();
   return (
     <Box className={classes.header}>
       <Box className={classes.leftHeader}>

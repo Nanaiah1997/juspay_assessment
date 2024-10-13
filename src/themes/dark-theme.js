@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material";
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 const COLORS = {
   PRIMARY_MAIN: "#d5f2f5",

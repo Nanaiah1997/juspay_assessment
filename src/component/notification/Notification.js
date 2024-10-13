@@ -2,7 +2,6 @@ import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
 import { getColor, getNofiticationIcon } from "../../utils/utils-constant";
-import { theme } from "../../themes/theme";
 
 const Notification = () => {
   const { notifications, activities, contacts } = useSelector(

@@ -1,18 +1,12 @@
-import {
-  Avatar,
-  Box,
-  Typography,
-  Collapse,
-  Divider,
-  IconButton,
-} from "@mui/material";
+import { Avatar, Box, Typography, Collapse, IconButton } from "@mui/material";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useNavigate, useParams } from "react-router-dom";
 import { theme } from "../../themes/theme";
 import cx from "clsx";
 import useStyles from "./SideBar.styles";
+import { sidebar } from "../../utils/dashBoardStructure";
 
 const profile = {
   name: "John Doe",
@@ -21,7 +15,7 @@ const profile = {
 
 const SideBar = () => {
   const classes = useStyles();
-  const { sidebar } = useSelector((s) => s.dashboardSlice);
+
   const { view } = useParams();
   return (
     <Box className={classes.sidebarContainer}>

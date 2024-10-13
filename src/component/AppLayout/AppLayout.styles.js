@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
   notificationBar: {
     width: "17%",
     borderLeft: `1px solid ${theme.palette.text.primary}4f`,
-    overflow: "hidden",
     transition: "width 0.3s ease, opacity 0.3s ease",
     padding: "2.5rem 3rem 1rem 2rem",
     overflow: "auto",
@@ -36,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     opacity: 0,
     visibility: "hidden",
     padding: "0rem",
+    overflow: "hidden",
   },
 }));
 

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 import {
   GlobalStyles,
   StyledEngineProvider,
@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import { createNewTheme } from "./theme";
 
-export const ThemeContext = React.createContext({
+export const ThemeContext = createContext({
   isLight: false,
   toggleTheme: () => undefined,
   theme: undefined,
@@ -21,7 +21,6 @@ export const ThemeProviderWrapper = ({ children, isDefaultLight }) => {
   };
 
   const theme = createNewTheme(isLightTheme);
-  console.log(isLightTheme, theme, "isLightTheme");
 
   return (
     <ThemeContext.Provider

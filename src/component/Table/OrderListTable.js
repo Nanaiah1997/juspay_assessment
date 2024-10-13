@@ -343,7 +343,7 @@ const OrderListTable = ({ keyword }) => {
                         lineHeight: 1.2,
                       }}
                     >
-                      {renderCellContent(column, row[column.field], row)}
+                      {renderCellContent(column, value, row)}
                     </TableCell>
                   );
                 })}

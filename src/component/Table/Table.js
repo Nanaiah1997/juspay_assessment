@@ -8,8 +8,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles"; // Import makeStyles
-import cx from "classnames"; // Ensure you have this library for classnames handling
+import { makeStyles } from "@mui/styles";
 import { theme } from "../../themes/theme";
 
 const useStyles = makeStyles(() => ({

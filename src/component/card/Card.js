@@ -19,9 +19,9 @@ const Card = ({
     <Box
       sx={{
         background:
-          index == 0
+          index === 0
             ? theme.palette.primary.main
-            : index == 3
+            : index === 3
             ? theme.palette.secondary.main
             : `${theme.palette.secondary.main}40`,
         width: showNotificationBar ? "15rem" : "22rem",

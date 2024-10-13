@@ -1,10 +1,9 @@
 import React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { Box } from "@mui/material";
 import { theme } from "../../themes/theme";
 
 const DashboardBarChart = () => {
-  const monthlyData = [4, 3, 5, 6, 7, 2, 5]; // Example data in millions
+  const monthlyData = [4, 3, 5, 6, 7, 2, 5];
   const formattedData = monthlyData.map((value) => value * 1000000);
   return (
     <BarChart
